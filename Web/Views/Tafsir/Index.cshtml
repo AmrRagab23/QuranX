@@ -1,0 +1,18 @@
+﻿@model IEnumerable<RationalizingIslam.DocumentModel.Tafsir>
+
+@{
+    ViewBag.Title = "Tafsirs etc";
+}
+
+<hgroup>
+    <h1>Tafsirs etc</h1>
+</hgroup>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            @Html.ActionLink(item.Mufassir, "CommentaryIndexes", new { Tafsir = item.Code })
+        </li>    
+    }
+</ul>

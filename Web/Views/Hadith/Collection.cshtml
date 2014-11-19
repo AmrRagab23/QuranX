@@ -1,0 +1,50 @@
+﻿@model QuranX.Models.Hadith_DrillDown
+
+@{
+    ViewBag.Title = Model.Collection.Name;
+    if (Model.NextKeyPartName == null && Model.HadithsInCurrentSelection.Count() > 0)
+    {
+        var firstHadith = Model.HadithsInCurrentSelection.First();
+        ViewBag.Title += " " + firstHadith.Reference.GetCaption(Model.Collection.ReferencePartNames);
+    }
+}
+
+<hgroup>
+    <h1>Hadith collection</h1>
+    <h2>
+        @{
+            string urlSoFar = Url.Action("Collection", new { Path = "" });
+            <a href="@urlSoFar">@Model.Collection.Name</a>
+            foreach (var keyPart in Model.SelectedKeyParts)
+            {
+                string nextKey = keyPart.Key + "-" + keyPart.Value;
+                urlSoFar += nextKey + "/";
+            <span>/ <a href="@urlSoFar">@nextKey</a></span>
+            }
+        }
+    </h2>
+    @if (@Model.NextKeyPartName != null)
+    {
+        <h3>Select @Model.NextKeyPartName</h3>
+    }
+</hgroup>
+
+@if (@Model.NextKeyPartName != null)
+{
+    <ul class="hadithReferenceList">
+        @foreach (string value in Model.NextKeyPartSelection)
+        {
+            string newUrl = string.Format("{0}{1}-{2}/", Url.Action("Collection"), Model.NextKeyPartName, value);
+            <li>
+                <a href="@newUrl">@Model.NextKeyPartName @value</a>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    foreach (var hadith in Model.HadithsInCurrentSelection)
+    {
+        @Html.Partial("HadithView", new RationalizingIslam.DocumentModel.CollectionAndHadith(collection: Model.Collection, hadith: hadith));
+    }
+}

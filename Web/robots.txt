@@ -1,0 +1,13 @@
+user-agent: *
+disallow: /Analysis/
+disallow: /Analysis/RedirectToChapterVerse?
+disallow: /Tafsirs/RedirectToChapterVerse?
+disallow: /Tafsir/RedirectToChapterVerse?
+disallow: /Hadiths/RedirectToChapterVerse?
+disallow: /Hadith/RedirectToChapterVerse?
+disallow: /Quran/RedirectToChapterVerse?
+disallow: /*.*-*
+disallow: /*.*,*
+
+User-agent: Mediapartners-Google 
+Disallow:

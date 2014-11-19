@@ -6,6 +6,10 @@
 *.user
 *.sln.docstates
 
+# NuGet
+packages/
+Web/App_Data/lucene/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/

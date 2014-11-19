@@ -1,0 +1,27 @@
+﻿@model QuranX.Models.Quran_VerseHadiths
+
+@{
+    ViewBag.Title = string.Format("Hadiths for Quran verse {0}.{1} - {2} {3}", Model.Chapter.Index, Model.Verse, Model.Chapter.EnglishName, Model.Chapter.ArabicName);
+}
+@section head_meta {
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<hgroup>
+    <h1>@Model.Chapter.Index - @Model.Chapter.EnglishName</h1>
+    <h2>@Model.Hadiths.Count() Hadith(s) related to verse 
+        @Html.ActionLink(Model.Chapter.Index.ToString() + "." + Model.Verse.ToString(), "Verse", "Quran")
+
+    </h2>
+</hgroup>
+
+@foreach (var entry in Model.Hadiths)
+{
+    @Html.Partial("HadithView", entry);
+}
+
+@section topsidebar
+{
+	@Html.Partial("ChapterVerseQuickJump")
+}
+

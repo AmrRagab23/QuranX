@@ -1,0 +1,17 @@
+﻿@model IEnumerable<RationalizingIslam.DocumentModel.ChapterAndVerse>
+
+@{
+    ViewBag.Title = "Quran - Multiple verses";
+}
+@section sidebar
+{
+    @Html.Partial("TranslationOptions")
+}
+
+<hgroup>
+    <h1>The Quran</h1>
+    <h2>Multiple verses</h2>
+</hgroup>
+
+@Html.Partial("VersesView", Model)
+

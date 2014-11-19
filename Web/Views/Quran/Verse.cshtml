@@ -1,0 +1,25 @@
+﻿@model QuranX.Models.Quran_Verses
+
+@{
+    ViewBag.Title = string.Format("Quran {0}.{1} - {2} {3}", Model.Chapter.Index, Model.Verse, Model.Chapter.EnglishName, Model.Chapter.ArabicName);
+    ViewBag.IsArticle = true;
+}
+
+<hgroup itemprop="name">
+    <h1>The Quran</h1>
+    <h2>
+        @Model.Chapter.EnglishName - 
+            @Model.Chapter.ArabicName
+    </h2>
+</hgroup>
+@Html.Partial("VersesView", Model.Verses)
+
+@section topsidebar
+{
+	@Html.Partial("ChapterVerseQuickJump")
+}
+
+@section sidebar
+{
+    @Html.Partial("TranslationOptions")
+}

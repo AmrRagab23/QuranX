@@ -1,0 +1,36 @@
+﻿@model RationalizingIslam.DocumentModel.Word
+@using RationalizingIslam.DocumentModel
+
+@{
+    ViewBag.Title = "Root word analysis - " + Model.Text;
+}
+@section head_meta {
+    <meta name="robots" content="noindex,nofollow" />
+}
+
+<hgroup>
+    <h1>The quran</h1>
+    <h2>Word analysis - @Model.Text (@QuranX.ArabicHelper.ArabicToLetterNames(Model.Text))</h2>
+</hgroup>
+
+@foreach (var group in Model.References.GroupBy(x => x.WordTypeDescription).OrderBy(x => x.Key))
+{
+    <h3>@group.Key</h3>
+    <table class="wordTable">
+        <tbody>
+            @foreach (var item in group)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Verse", routeValues: new { Chapter = item.ChapterIndex, Verse = item.VerseIndex })#word_@item.WordIndex" class="verseReference">
+                            @item.ChapterIndex.@item.VerseIndex
+                        </a>                        
+                    </td>
+                    <td class="highlightable">
+                        @item.EnglishText
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

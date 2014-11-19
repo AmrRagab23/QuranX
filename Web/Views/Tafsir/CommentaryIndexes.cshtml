@@ -1,0 +1,38 @@
+﻿@model RationalizingIslam.DocumentModel.Tafsir
+
+@{
+    ViewBag.Title = (Model.IsTafsir ? "Tafsir " : "") + Model.Mufassir;
+}
+<hgroup>
+    <h1>The Quran</h1>
+    @if (Model.IsTafsir)
+    {
+        <h2>Commentary by Tafsir @Model.Mufassir</h2>
+    }
+    else
+    {
+        <h2>@Model.Mufassir</h2>
+    }
+</hgroup>
+
+<div id="commentaryIndex">
+    @foreach (var chapter in QuranX.SharedData.Document.QuranDocument.Chapters)
+    {
+        <h3>@chapter.Index: @chapter.EnglishName - @chapter.ArabicName</h3>
+        <div>
+            <ul>
+                @foreach (var commentary in @Model.CommentariesForChapter(chapter.Index))
+                {
+                    <li>
+                        @Html.ActionLink(
+                                linkText: commentary.VerseReference.ToString(),
+                                actionName: "Verse",
+                                routeValues: new { Chapter = chapter.Index, Verse = commentary.VerseReference.FirstVerse }
+                        )
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+

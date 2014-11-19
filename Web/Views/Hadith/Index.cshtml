@@ -1,0 +1,18 @@
+﻿@model IEnumerable<RationalizingIslam.DocumentModel.HadithCollection>
+
+@{
+    ViewBag.Title = "Hadith collections";
+}
+
+<hgroup>
+    <h1>Hadith collections</h1>
+</hgroup>
+
+<ul>
+    @foreach (var collection in Model)
+    {
+        <li>
+            @Html.ActionLink(collection.Name, "Collection", new { CollectionCode = collection.Code })
+        </li>
+    }
+</ul>

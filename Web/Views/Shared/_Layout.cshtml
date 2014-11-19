@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    @RenderSection("head_meta", required: false)
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+</head>
+@{
+    MvcHtmlString itemScopeHtml = null;
+    if (ViewBag.IsArticle != null && ViewBag.IsArticle)
+    {
+        itemScopeHtml = MvcHtmlString.Create("itemscope itemtype=\"http://schema.org/Article\"");
+    }
+}
+<body @itemScopeHtml>
+    <script>
+        if (self !== top)
+            top.location.replace(self.location.href)
+    </script>
+    @Html.Partial("GoogleAnalytics")
+    <header>
+        <nav>
+            <ul>
+                <li>@Html.RouteLink("Quran", "Quran")</li>
+                <li>@Html.RouteLink("Tafsirs", "Tafsirs")</li>
+                <li>@Html.RouteLink("Hadiths", "Hadiths")</li>
+                <li>@Html.RouteLink("Full search", "Search")</li>
+                <li>@Html.RouteLink("Help", "Help")</li>
+				<li>@Html.RouteLink("About", "About")</li>
+            </ul>
+        </nav>
+        <img id="logo" src="@Url.Content("~/Content/Images/QuranX.png")" alt="QuranX" itemprop="image"/>
+    </header>
+
+    <section id="contentsHolder">
+        <div id="sidebar">
+			@using (Html.BeginForm(actionName: "Index", controllerName: "Search", method: FormMethod.Get))
+   {
+	   @Html.Hidden("context", "Quran")
+			<aside id="verseNavigator">
+				<ul class="sideNavigation">
+					<li>Quran search</li>
+					<li>@Html.TextBox("q")</li>
+				</ul>
+			</aside>
+   }
+
+			@RenderSection("topsidebar", required: false)
+            @if ((ViewBag.Chapter ?? 0) > 0)
+            {
+                @Html.Partial("VerseNavigator")
+            }
+            @RenderSection("sidebar", required: false)
+        </div>
+        <div id="contents">
+            @RenderBody()
+        </div>
+    </section>
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
