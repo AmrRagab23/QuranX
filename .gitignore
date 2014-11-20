@@ -9,8 +9,6 @@
 # NuGet
 packages/
 Web/App_Data/lucene/
-!Web/App_Data/unzip_me.7z
-!Web/App_Data/readme.txt
 
 # Build results
 [Dd]ebug/

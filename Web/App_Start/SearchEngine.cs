@@ -114,7 +114,11 @@ namespace QuranX
 		}
 
 		static void WriteIndexes()
-		{ 
+		{
+			//Note that when this site is run for the first
+			//time it is necessary to create the lucene full text index
+			//for searching, and it may take some time
+			System.Diagnostics.Debugger.Break();
 			var maxFieldLength = new IndexWriter.MaxFieldLength(int.MaxValue);
 			using (var indexWriter = new IndexWriter(Index, Analyzer, maxFieldLength))
 			{
