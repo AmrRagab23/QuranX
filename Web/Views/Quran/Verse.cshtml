@@ -1,22 +1,19 @@
 ﻿@model QuranX.Models.Quran_Verses
 
 @{
-	ViewBag.Title = string.Format("Quran {0}.{1} - {2} {3}", Model.Chapter.Index, Model.Verse, Model.Chapter.EnglishName, Model.Chapter.ArabicName);
+	string verseText = @Model.Chapter.Index + ":" + @Model.Verse;
+	if (Model.Verse != Model.LastVerse)
+		verseText += "-" + @Model.LastVerse;
+	ViewBag.Title = string.Format("Quran {0} - {1} {2}", verseText, Model.Chapter.EnglishName, Model.Chapter.ArabicName);
 	ViewBag.IsArticle = true;
 }
 
 <hgroup itemprop="name">
 	<h1>The Quran</h1>
 	<h2>
-		@{
-			string verseText = @Model.Chapter.Index + ":" + @Model.Verse;
-			if (Model.Verse != Model.LastVerse)
-				verseText += "-" + @Model.LastVerse;
-		}
-
-			@verseText
+		@verseText
 		@Model.Chapter.EnglishName - 
-            @Model.Chapter.ArabicName
+        @Model.Chapter.ArabicName
 	</h2>
 </hgroup>
 @Html.Partial("VersesView", Model.Verses)
