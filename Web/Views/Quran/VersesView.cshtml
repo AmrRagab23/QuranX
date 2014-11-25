@@ -48,11 +48,6 @@
                 </a>
             }
             <dl class="translations" itemprop="articleBody">
-                @if (allTranslations || ViewBag.Translations.Contains("Arabic"))
-                {
-                    <dt>Arabic</dt>
-                    <dd class="arabicText">@item.Verse.ArabicText</dd>
-                }
                 @foreach (var translation in item.Verse.Translations)
                 {
                     if (allTranslations || ViewBag.Translations.Contains(translation.TranslatorCode))
@@ -60,6 +55,11 @@
                     <dt>@translation.TranslatorName</dt>
                     <dd class="highlightable">@translation.Text</dd>
                     }
+                }
+                @if (allTranslations || ViewBag.Translations.Contains("Arabic"))
+                {
+                    <dt>Arabic</dt>
+                    <dd class="arabicText">@item.Verse.ArabicText</dd>
                 }
             </dl>
         </article>
