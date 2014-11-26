@@ -11,6 +11,7 @@ namespace QuranX.Controllers
     {
 		const string Domain = "http://QuranX.com";
 		const int PageSize = 10 * 1000;
+		readonly DateTime LastMod = new DateTime(2014, 11, 26);
 
 		public SiteMapResult Quran()
 		{
@@ -18,7 +19,7 @@ namespace QuranX.Controllers
 			foreach(var chapter in SharedData.Document.QuranDocument.Chapters)
 				foreach (var verse in chapter.Verses)
 					urls.Add(string.Format("{0}/{1}.{2}", Domain, chapter.Index, verse.Index));
-			return new SiteMapResult(urls);
+			return new SiteMapResult(urls, LastMod);
 		}
 
 		public SiteMapResult Tafsir(string tafsirCode, int pageIndex)
@@ -29,7 +30,7 @@ namespace QuranX.Controllers
 			var comments = tafsir.Comments.OrderBy(x => x.VerseReference).Skip(pageIndex * PageSize).Take(PageSize);
 			foreach (var comment in comments)
 				urls.Add(string.Format("{0}/tafsir/{1}/{2}.{3}", Domain, tafsirCode, comment.VerseReference.Chapter, comment.VerseReference.FirstVerse));
-			return new SiteMapResult(urls);
+			return new SiteMapResult(urls, LastMod);
 		}
 
 		public SiteMapResult Hadith(string collectionCode, int pageIndex)
@@ -45,7 +46,7 @@ namespace QuranX.Controllers
 					url += hadithCollection.ReferencePartNames[index] + "-" + hadith.Reference[index] + "/";
 				urls.Add(url);
 			}
-			return new SiteMapResult(urls);
+			return new SiteMapResult(urls, LastMod);
 		}
 	}
 }

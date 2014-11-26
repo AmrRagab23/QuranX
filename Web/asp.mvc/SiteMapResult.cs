@@ -7,10 +7,12 @@ namespace System.Web.Mvc
 	public class SiteMapResult : ActionResult
 	{
 		List<string> Urls;
+		readonly DateTime LastMod;
 
-		public SiteMapResult(IEnumerable<string> urls)
+		public SiteMapResult(IEnumerable<string> urls, DateTime lastMod)
 		{
 			this.Urls = new List<string>(urls);
+			this.LastMod = lastMod;
 		}
 
 		public override void ExecuteResult(ControllerContext context)
@@ -24,6 +26,7 @@ namespace System.Web.Mvc
 			{
 				builder.AppendLine("<url>");
 				builder.AppendLine("  <loc>" + url + "</loc>");
+				builder.AppendFormat("  <lastmod>yyyy-MM-dd</lastmod>", LastMod);
 				builder.AppendLine("</url>");
 			}
 			builder.AppendLine("</urlset>");
