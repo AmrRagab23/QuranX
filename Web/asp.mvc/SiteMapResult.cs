@@ -26,7 +26,7 @@ namespace System.Web.Mvc
 			{
 				builder.AppendLine("<url>");
 				builder.AppendLine("  <loc>" + url + "</loc>");
-				builder.AppendFormat("  <lastmod>yyyy-MM-dd</lastmod>", LastMod);
+				builder.AppendLine("  <lastmod>" + LastMod.ToString("yyyy-MM-dd") + "</lastmod>");
 				builder.AppendLine("</url>");
 			}
 			builder.AppendLine("</urlset>");
