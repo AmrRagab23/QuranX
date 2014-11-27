@@ -56,6 +56,7 @@ namespace QuranX.Controllers
 		public ActionResult MultipleVerses(string verses)
 		{
 			SetTranslationsViewBag();
+			ViewBag.VerseReferences = verses;
 			var references = verses.Split(',')
 				.ToList()
 				.ConvertAll(x => VerseRangeReference.Parse(x));

@@ -1,11 +1,16 @@
 ﻿@model QuranX.Models.Quran_Verses
 
 @{
-	string verseText = @Model.Chapter.Index + ":" + @Model.Verse;
+	string verseText = @Model.Chapter.Index + "." + @Model.Verse;
 	if (Model.Verse != Model.LastVerse)
 		verseText += "-" + @Model.LastVerse;
 	ViewBag.Title = string.Format("Quran {0} - {1} {2}", verseText, Model.Chapter.EnglishName, Model.Chapter.ArabicName);
 	ViewBag.IsArticle = true;
+}
+
+@section head_meta {
+	<meta name="description" content="@ViewBag.Title" />
+	<meta property="og:description" content="@ViewBag.Title" />
 }
 
 <hgroup itemprop="name">

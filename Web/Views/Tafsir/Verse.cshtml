@@ -1,8 +1,13 @@
 ﻿@model QuranX.Models.Tafsir_Commentary
 
 @{
-    ViewBag.Title = string.Format("Tafsirs etc {0} for Quran verse {1}.{2} - {3} {4}", Model.Tafsir.Mufassir, Model.Chapter.Index, Model.Verse, Model.Chapter.EnglishName, Model.Chapter.ArabicName);
+    ViewBag.Title = string.Format("Tafsirs etc / {0} for Quran verse {1}.{2} - {3} {4}", Model.Tafsir.Mufassir, Model.Chapter.Index, Model.Verse, Model.Chapter.EnglishName, Model.Chapter.ArabicName);
     ViewBag.IsArticle = true;
+}
+
+@section head_meta {
+	<meta name="description" content="@ViewBag.Title" />
+	<meta property="og:description" content="@ViewBag.Title" />
 }
 
 <hgroup itemprop="name">

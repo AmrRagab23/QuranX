@@ -1,7 +1,12 @@
 ﻿@model IEnumerable<RationalizingIslam.DocumentModel.Tafsir>
 
 @{
-    ViewBag.Title = "Tafsirs etc";
+    ViewBag.Title = "Tafsirs of the Quran";
+}
+
+@section head_meta {
+	<meta name="description" content="@Model.Count() Tafsirs of the Quran" />
+	<meta property="og:description" content="@Model.Count() Tafsirs of the Quran" />
 }
 
 <hgroup>

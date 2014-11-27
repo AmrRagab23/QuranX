@@ -1,11 +1,12 @@
 ﻿@model QuranX.Models.Quran_VerseTafsirs
 
 @{
-    ViewBag.Title = string.Format("Tafsirs etc for Quran verse {0}.{1} - {2} {3}", Model.Chapter.Index, Model.Verse, Model.Chapter.EnglishName, Model.Chapter.ArabicName);
+    ViewBag.Title = string.Format("Tafsirs etc / Quran verse {0}.{1} - {2} {3}", Model.Chapter.Index, Model.Verse, Model.Chapter.EnglishName, Model.Chapter.ArabicName);
 }
 
 @section head_meta {
-    <meta name="robots" content="noindex,nofollow" />
+	<meta name="description" content="@ViewBag.Title" />
+	<meta property="og:description" content="@ViewBag.Title" />
 }
 
 <hgroup>

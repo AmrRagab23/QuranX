@@ -2,10 +2,12 @@
 @using RationalizingIslam.DocumentModel;
 
 @{
-    ViewBag.Title = "The Quran - Analysis of " + Model.Chapter.Index + "." + Model.Verse.Index;
+    ViewBag.Title = "Classical Arabic analysis of Quran " + Model.Chapter.Index + "." + Model.Verse.Index;
 }
 @section head_meta {
     <meta name="robots" content="noindex,nofollow" />
+	<meta name="description" content="@ViewBag.Title" />
+	<meta property="og:description" content="@ViewBag.Title" />
 }
 
 
