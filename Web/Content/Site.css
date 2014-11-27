@@ -458,3 +458,27 @@ table.wordTable {
 		text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
 		border: 1px solid black;
 	}
+
+#socialButtons {
+	text-align: right;
+	height: 0px;
+	position: relative;
+	top: -10px;
+	right: 16px;
+	display: none;
+}
+
+	#socialButtons ul {
+		list-style: none;
+		padding: 0px;
+		margin: 0px;
+	}
+
+		#socialButtons ul li {
+			display: inline;
+		}
+
+.fb-share-button {
+	position: relative;
+	top: -4px;
+}
