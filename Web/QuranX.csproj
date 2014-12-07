@@ -206,6 +206,7 @@
     <Content Include="App_Data\Translations\AhmadAli.xml" />
     <Content Include="App_Data\Translations\AhmadRazaKhan.xml" />
     <Content Include="App_Data\Translations\AJArberry.xml" />
+    <Content Include="App_Data\Translations\CorpusQuran.xml" />
     <Content Include="App_Data\Translations\Daryabadi.xml" />
     <Content Include="App_Data\Translations\Hilali.xml">
       <SubType>Designer</SubType>
