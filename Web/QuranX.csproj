@@ -198,6 +198,7 @@
     <Content Include="App_Data\HadithXRefs\Bukhari.txt" />
     <Content Include="App_Data\HadithXRefs\MaliksMuwatta.txt" />
     <Content Include="App_Data\HadithXRefs\Muslim.txt" />
+    <Content Include="App_Data\HadithXRefs\Nasai.txt" />
     <Content Include="App_Data\Tafsirs\Abbas.xml" />
     <Content Include="App_Data\Tafsirs\Jalal.xml" />
     <Content Include="App_Data\Tafsirs\Maududi.xml" />
