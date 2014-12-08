@@ -169,6 +169,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelperExtensions.cs" />
+    <Compile Include="Models\Analysis_Root.cs" />
     <Compile Include="Models\Analysis_Verse.cs" />
     <Compile Include="Models\Hadith_DrillDown.cs" />
     <Compile Include="Models\Quran_VerseHadiths.cs" />

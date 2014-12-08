@@ -22,8 +22,13 @@ namespace QuranX.Controllers
 
 		public ActionResult Root(string root)
 		{
+			/*
 			root = ArabicHelper.LetterNamesToArabic(root);
 			var model = SharedData.Document.RootWordsDocument[root];
+			return View(model);
+			*/
+			root = ArabicHelper.LetterNamesToArabic(root);
+			var model = new Analysis_Root(root);
 			return View(model);
 		}
 

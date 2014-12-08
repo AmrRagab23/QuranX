@@ -1,8 +1,8 @@
-﻿@model RationalizingIslam.DocumentModel.Word
+﻿@model QuranX.Models.Analysis_Root
 @using RationalizingIslam.DocumentModel
 
 @{
-	ViewBag.Title = "Classical Arabic analysis of root word " + QuranX.ArabicHelper.ArabicToLetterNames(Model.Text) + " " + @Model.Text + " in the Quran";
+	ViewBag.Title = "Classical Arabic analysis of root word " + Model.LetterNames + " " + Model.ArabicRoot + " in the Quran";
 }
 @section head_meta {
     <meta name="robots" content="noindex" />
@@ -11,24 +11,32 @@
 
 <hgroup>
     <h1>The quran</h1>
-    <h2>Word analysis - @Model.Text (@QuranX.ArabicHelper.ArabicToLetterNames(Model.Text))</h2>
+    <h2>Word analysis - @Model.ArabicRoot (@Model.LetterNames)</h2>
 </hgroup>
 
-@foreach (var group in Model.References.GroupBy(x => x.WordTypeDescription).OrderBy(x => x.Key))
+@foreach (var group in Model.WordTypeGroups)
 {
-    <h3>@group.Key</h3>
+    <h3>@group.WordTypeDescription</h3>
     <table class="wordTable">
         <tbody>
-            @foreach (var item in group)
+            @foreach (var extract in group.Extracts)
             {
                 <tr>
                     <td>
-                        <a href="@Url.Action("Verse", routeValues: new { Chapter = item.ChapterIndex, Verse = item.VerseIndex })#word_@item.WordIndex" class="verseReference">
-                            @item.ChapterIndex.@item.VerseIndex
+                        <a href="@Url.Action("Verse", routeValues: new { Chapter = extract.WordReference.ChapterIndex, Verse = extract.WordReference.VerseIndex })#word_@extract.WordReference.WordIndex" class="verseReference">
+                            @extract.WordReference.ChapterIndex.@extract.WordReference.VerseIndex
                         </a>                        
                     </td>
                     <td class="highlightable">
-                        @item.EnglishText
+						@foreach (var word in extract.PrecedingWords)
+						{
+							@(word.English + " ")
+						}
+                        <strong>@extract.WordReference.EnglishText</strong>
+						@foreach (var word in extract.FollowingWords)
+						{
+							@(word.English + " ")
+						}
                     </td>
                 </tr>
             }
